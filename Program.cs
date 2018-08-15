@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> d40b24a72cbbe14d22fedae79305f1f36266cf4a
 ﻿using System;
 using Com.Interwoven.WorkSite.iManage;
 
@@ -9,6 +12,10 @@ namespace iManage_COM_C_sharp_Samples
         IManDMS imDMS;
         IManSessions imSessions;
         IManDatabase imPreferredDB;
+<<<<<<< HEAD
+        IManDatabase imDatabase;
+=======
+>>>>>>> d40b24a72cbbe14d22fedae79305f1f36266cf4a
 
         public void login(string server, string username, string password)
         {
@@ -17,12 +24,28 @@ namespace iManage_COM_C_sharp_Samples
             imSessions = imDMS.Sessions;
             // Add a server to the Sessions collection
             imSessions.Add(server);
+<<<<<<< HEAD
+
+            // Perform an explicit login using WorkSite credentials
+            imSessions.ItemByName(server).Login(username, password);
+
+            // Perform a Trusted login, under the context of the logged-in Windows user
+            //imSessions.ItemByName(server).TrustedLogin();
+
+            // Obtain the preferred database for the user
+            imPreferredDB = imSessions.ItemByName(server).PreferredDatabase;
+            // Or, reference by name or index
+            imDatabase = imSessions.ItemByName(server).Databases.ItemByName("mydatabase");
+            // First database in the collection, indexed from 1.
+            imDatabase = imSessions.ItemByName(server).Databases.ItemByIndex(1);
+=======
             // Perform an explicit login using WorkSite credentials
             imSessions.ItemByName(server).Login(username, password);
             // Perform a Trusted login, under the context of the logged-in Windows user
                 //imSessions.ItemByName(server).TrustedLogin();
             // Obtain the preferred database for the user
             imPreferredDB = imSessions.ItemByName(server).PreferredDatabase;
+>>>>>>> d40b24a72cbbe14d22fedae79305f1f36266cf4a
         }
 
         public void recent_workspaces()
@@ -100,6 +123,17 @@ namespace iManage_COM_C_sharp_Samples
             imDocument.GetCopy(@"C:\Temp\document.DOCX", imGetCopyOptions.imNativeFormat);
         }
 
+<<<<<<< HEAD
+        public void delete_document(int number, int version)
+        {
+            // delete a given document from the user's preferred database
+            imPreferredDB.DeleteDocument(number, version);
+            // or, from the named / indexed database
+            imDatabase.DeleteDocument(number, version);
+        }
+
+=======
+>>>>>>> d40b24a72cbbe14d22fedae79305f1f36266cf4a
         public void document_history(int number, int version)
         {
             IManDocument imDocument = imPreferredDB.GetDocument(number, version);
@@ -218,21 +252,48 @@ namespace iManage_COM_C_sharp_Samples
 
         static void Main(string[] args)
         {
+<<<<<<< HEAD
+            //string strServer = "my-server.imanage.work";
+            string strServer = "beantown.org.uk";
+            string strUsername = @"BEANTOWN\wsadmin";
+            string strPassword = "Spec!es8472";
+=======
             string strServer = "my-server.imanage.work";
             string strUsername = "wsadmin";
             string strPassword = "password";
+>>>>>>> d40b24a72cbbe14d22fedae79305f1f36266cf4a
 
             Program p = new Program();
 
             p.login(strServer, strUsername, strPassword);
+<<<<<<< HEAD
+
+            //p.recent_workspaces();
+            //p.document_worklist();
+
+            //p.search_documents("RHAMMOND", "WORDX");
+            //p.search_documents_by_client("1002279");
+            p.delete_document(12345, 1);
+
+=======
             //p.recent_workspaces();
             //p.document_worklist();
             //p.search_documents("RHAMMOND", "WORDX");
             //p.search_documents_by_client("1002279");
+>>>>>>> d40b24a72cbbe14d22fedae79305f1f36266cf4a
             //p.document_history(25775, 1);
             //p.document_add_security(25775, 1, "HOMER", imAccessRight.imRightAll);
             //p.document_print_security(25775, 1);
             //p.document_update_metadata(25775, 1);
+<<<<<<< HEAD
+
+            //IManWorkspace imWorkspace = p.search_workspaces("1002310", "003", "WSADMIN");
+            //IManWorkspace imWorkspace = p.search_workspaces("3102960", "001", "RHAMMOND");
+
+            //IManFolder imFolder = p.add_folder_to_workspace(imWorkspace, "This is a new folder", imSecurityType.imPublic, "3102960", "001", "DOC");
+            //p.workspace_child_folders_profile(imWorkspace);
+            
+=======
             //IManWorkspace imWorkspace = p.search_workspaces("1002310", "003", "WSADMIN");
             IManWorkspace imWorkspace = p.search_workspaces("3102960", "001", "RHAMMOND");
             IManFolder imFolder = p.add_folder_to_workspace(imWorkspace, "This is a new folder", imSecurityType.imPublic, "3102960", "001", "DOC");
@@ -479,6 +540,7 @@ namespace iManage_COM_C_sharp_Samples
             IManWorkspace imWorkspace = p.search_workspaces("3102960", "001", "RHAMMOND");
             IManFolder imFolder = p.add_folder_to_workspace(imWorkspace, "This is a new folder", imSecurityType.imPublic, "3102960", "001", "DOC");
             p.workspace_child_folders_profile(imWorkspace);
+>>>>>>> d40b24a72cbbe14d22fedae79305f1f36266cf4a
             //p.delete_folder(imWorkspace, imFolder);
             //p.workspace_children_and_documents_profile(imWorkspace);
 
@@ -487,4 +549,7 @@ namespace iManage_COM_C_sharp_Samples
         }
     }   // class Program
 }
+<<<<<<< HEAD
+=======
 >>>>>>> d98978721a7ccea130088f22a34dd0c63f0265c6
+>>>>>>> d40b24a72cbbe14d22fedae79305f1f36266cf4a
